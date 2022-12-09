@@ -7,7 +7,7 @@ This folder contains the simulation setup for the Robocup Virtual Humanoid Leagu
 In order to run this simulation, you will need to have a [fairly powerful](https://cyberbotics.com/doc/guide/system-requirements) Linux, Windows or macOS computer.
 You will also need to get familiar with Webots by reading the [Webots User Guide](https://cyberbotics.com/doc/guide/) and following the [Tutorials](https://cyberbotics.com/doc/guide/tutorials).
 
-## Installation
+## Installation for Ubuntu (tested with 22.04)
 
 1. Install Webots 2022b from https://cyberbotics.com/
 2. Build the latest version of the official RoboCup Humanoid TC fork of the [GameController](https://github.com/RoboCup-Humanoid-TC/GameController).
@@ -19,13 +19,12 @@ You will also need to get familiar with Webots by reading the [Webots User Guide
    ```
 3. Install Python dependencies:
    ```
-   cd webots/projects/samples/contests/robocup/controllers/referee
+   cd controllers/referee
    pip3 install -r requirements.txt
    ```
 4. Build the controllers:
    ```
    apt-get install protobuf-compiler libprotobuf-dev libjpeg9-dev
-   cd webots/projects/samples/contests/robocup
    make # This requires the environment variable WEBOTS_HOME to be set
    ```
 
