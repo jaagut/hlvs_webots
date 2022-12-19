@@ -29,30 +29,74 @@ class Game(SimpleNamespace):
             self.blue.id = int(self.blue.id)
 
         # set defaults for unset values
-        if not hasattr(self, 'minimum_real_time_factor'):
-            self.minimum_real_time_factor = 3  # we guarantee that each time step lasts at least 3x simulated time
-        if not hasattr(self, 'press_a_key_to_terminate'):
+        if not hasattr(self, "minimum_real_time_factor"):
+            self.minimum_real_time_factor = (
+                3  # we guarantee that each time step lasts at least 3x simulated time
+            )
+        if not hasattr(self, "press_a_key_to_terminate"):
             self.press_a_key_to_terminate = False
 
-        self.penalty_shootout = self.type == 'PENALTY'
+        self.penalty_shootout = self.type == "PENALTY"
         self.penalty_shootout_count = 0
         self.penalty_shootout_goal = False
-        self.penalty_shootout_time_to_score = [None, None, None, None, None, None, None, None, None, None]
-        self.penalty_shootout_time_to_reach_goal_area = [None, None, None, None, None, None, None, None, None, None]
-        self.penalty_shootout_time_to_touch_ball = [None, None, None, None, None, None, None, None, None, None]
-        self.ball_radius = 0.07 if self.field_size == 'kid' else 0.1125
+        self.penalty_shootout_time_to_score = [
+            None,
+            None,
+            None,
+            None,
+            None,
+            None,
+            None,
+            None,
+            None,
+            None,
+        ]
+        self.penalty_shootout_time_to_reach_goal_area = [
+            None,
+            None,
+            None,
+            None,
+            None,
+            None,
+            None,
+            None,
+            None,
+            None,
+        ]
+        self.penalty_shootout_time_to_touch_ball = [
+            None,
+            None,
+            None,
+            None,
+            None,
+            None,
+            None,
+            None,
+            None,
+            None,
+        ]
+        self.ball_radius = 0.07 if self.field_size == "kid" else 0.1125
         # initial position of ball before kick
-        self.ball_kick_translation = [0, 0,
-                                      self.ball_radius + self.blackboard.field.turf_depth]
+        self.ball_kick_translation = [
+            0,
+            0,
+            self.ball_radius + self.blackboard.field.turf_depth,
+        ]
         self.ball_exit_translation = None
         self.ball_last_touch_time = 0
         self.ball_first_touch_time = 0
         self.ball_last_touch_time_for_display = 0
         self.ball_position = [0, 0, 0]
         self.ball_last_move = 0
-        self.real_time_multiplier = 1000 / (
-                self.minimum_real_time_factor * int(self.blackboard.supervisor.getBasicTimeStep())) \
-            if self.minimum_real_time_factor > 0 else 10
+        self.real_time_multiplier = (
+            1000
+            / (
+                self.minimum_real_time_factor
+                * int(self.blackboard.supervisor.getBasicTimeStep())
+            )
+            if self.minimum_real_time_factor > 0
+            else 10
+        )
         self.interruption = None
         self.interruption_countdown = 0
         self.interruption_step = None
@@ -66,9 +110,11 @@ class Game(SimpleNamespace):
         self.play_countdown = 0
         self.in_play = None
         self.throw_in = False  # True while throwing in to allow ball handling
-        self.throw_in_ball_was_lifted = False  # True if the throwing-in player lifted the ball
+        self.throw_in_ball_was_lifted = (
+            False  # True if the throwing-in player lifted the ball
+        )
         self.over = False
-        self.wait_for_state = 'INITIAL'
+        self.wait_for_state = "INITIAL"
         self.wait_for_sec_state = None
         self.wait_for_sec_phase = None
 
@@ -98,7 +144,7 @@ class Game(SimpleNamespace):
         self.ball_translation.setSFVec3f(self.ball_kick_translation)
 
     def set_kickoff(self, team_color):
-        self.phase = 'KICKOFF'
+        self.phase = "KICKOFF"
         self.ball_kick_translation[0] = 0
         self.ball_kick_translation[1] = 0
         self.ball_set_kick = True
@@ -106,13 +152,15 @@ class Game(SimpleNamespace):
         self.in_play = None
         self.ball_must_kick_team = team_color
         self.reset_ball_touched()
-        self.ball_left_circle = None  # one can score only after ball went out of the circle
+        self.ball_left_circle = (
+            None  # one can score only after ball went out of the circle
+        )
         self.can_score = False  # or was touched by another player
         self.can_score_own = False
         self.kicking_player_number = None
 
     def set_dropped_ball(self):
-        self.phase = 'DROPPEDBALL'
+        self.phase = "DROPPEDBALL"
         self.ball_kick_translation[0] = 0
         self.ball_kick_translation[1] = 0
         self.ball_set_kick = True
