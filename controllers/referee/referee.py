@@ -16,7 +16,6 @@
 import copy
 import json
 import math
-import numpy as np
 import os
 import random
 import socket
@@ -24,32 +23,29 @@ import subprocess
 import sys
 import time
 import traceback
-import yaml
-
-from scipy.spatial import ConvexHull
-
 from types import SimpleNamespace
 
-from controller import Supervisor, Node
-
-from gamestate import GameState
+import data_collection as dc
+import numpy as np
+import yaml
+from blackboard import blackboard
+from controller import Node, Supervisor
+from display import Display
 from field import Field
 from forceful_contact_matrix import ForcefulContactMatrix
-from logger import logger
+from game import Game
+from gamestate import GameState
 from geometry import (
-    distance2,
-    rotate_along_z,
     aabb_circle_collision,
+    distance2,
     polygon_circle_collision,
+    rotate_along_z,
     update_aabb,
 )
-from display import Display
-from game import Game
-from team import Team
+from logger import logger
+from scipy.spatial import ConvexHull
 from sim_time import SimTime
-from blackboard import blackboard
-from data_collection.data_collector import DataCollector
-
+from team import Team
 
 # game interruptions requiring a free kick procedure
 GAME_INTERRUPTIONS = {
