@@ -9,32 +9,41 @@ You will also need to get familiar with Webots by reading the [Webots User Guide
 
 ## Installation for Ubuntu (tested with 22.04)
 
-1. Install Webots 2022b from https://cyberbotics.com/
+1. Install Webots 2022b from <https://cyberbotics.com/>
 2. Build the latest version of the official RoboCup Humanoid TC fork of the [GameController](https://github.com/RoboCup-Humanoid-TC/GameController).
+
    ```
    apt-get install ant
    git clone https://github.com/RoboCup-Humanoid-TC/GameController
    cd GameController
    ant
    ```
+
 3. Install Python dependencies:
+
    ```
    cd controllers/referee
    pip3 install -r requirements.txt
    ```
+
 4. Build the controllers:
+
    ```
    apt-get install protobuf-compiler libprotobuf-dev libjpeg9-dev
+   export WEBOTS_HOME=/usr/local/webots # Set WEBOTS_HOME. This might be a different location, depending on your installation type
    make # This requires the environment variable WEBOTS_HOME to be set
    ```
 
 ## Run the Demo
 
 1. Open the [robocup.wbt](worlds/robocup.wbt) world file in Webots and run it until you see the GameController window showing up.
+
    ```
-   export GAME_CONTROLLER_HOME=/path/to/GameController JAVA_HOME=/usr
-   ./webots ./projects/samples/contests/robocup/worlds/robocup.wbt
+
+   GAME_CONTROLLER_HOME=/path/to/GameController JAVA_HOME=/usr webots ./worlds/robocup.wbt
+
    ```
+
    You have to pass the environment variables `GAME_CONTROLLER_HOME` which points to the `GameController` folder and `JAVA_HOME` which points to your Java installation (which might be under `/usr`).
 2. You can manually move the robots and the ball using the mouse (<kbd>Shift</kbd>-right-click-and-drag).
 3. Launch the sample robot controller [client.cpp](controllers/player/client.cpp) by typing `./client` in the [controllers/player](controllers/player) folder.
@@ -142,7 +151,8 @@ Multiple variables can be set to influence the behavior of the simulation.
 
 `press_a_key_to_terminate`: true or false, allows pressing a key to cleanly end the simulation and save the recording (used for testing)
 
-`game_controller_extra_args`: used to pass arguments to the game controller, for example 
+`game_controller_extra_args`: used to pass arguments to the game controller, for example
+
 ```json
   "game_controller_extra_args": [
     "--halftimeduration",
@@ -151,6 +161,7 @@ Multiple variables can be set to influence the behavior of the simulation.
     "60"
   ],
 ```
+
 can be used to reduce halftime duration.
 
 `texture_seed`: can be set to an integer to set the random seed used for texture (background, background luminosity, and ball)
