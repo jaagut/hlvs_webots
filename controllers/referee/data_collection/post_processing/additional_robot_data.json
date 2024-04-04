@@ -1,0 +1,60 @@
+{
+    "BezRobocup": {
+        "mass": 4.78819,
+        "DOF": 18,
+        "mono_camera": {
+            "frame_id": "camera_frame",
+            "FPS": -1,
+            "FOV": 1.39626,
+            "pixel_count_x": 640,
+            "pixel_count_y": 480
+        },
+        "stereo_camera_l": null,
+        "stereo_camera_r": null
+    },
+    "ChapeRobocup": {
+        "mass": 3.40484,
+        "DOF": 20,
+        "mono_camera": {
+            "frame_id": "camera_frame",
+            "FPS": -1,
+            "FOV": 1.0123,
+            "pixel_count_x": 640,
+            "pixel_count_y": 480
+        },
+        "stereo_camera_l": null,
+        "stereo_camera_r": null
+    },
+    "NUgus": {
+        "mass": 7.33387,
+        "DOF": 20,
+        "mono_camera": null,
+        "stereo_camera_l": {
+            "frame_id": "l_camera_frame",
+            "FPS": -1,
+            "FOV": 1.5707,
+            "pixel_count_x": 640,
+            "pixel_count_y": 480
+        },
+        "stereo_camera_r": {
+            "frame_id": "r_camera_frame",
+            "FPS": -1,
+            "FOV": 1.5707,
+            "pixel_count_x": 640,
+            "pixel_count_y": 480
+        }
+    },
+    "WolfgangRobocup": {
+        "mass": 6.13661,
+        "DOF": 20,
+        "mono_camera": {
+            "frame_id": "camera_frame",
+            "FPS": -1,
+            "FOV": 1.04,
+            "pixel_count_x": 800,
+            "pixel_count_y": 600
+        },
+        "stereo_camera_l": null,
+        "stereo_camera_r": null
+    }
+}
